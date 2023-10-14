@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { getByText, getByRole } from '@testing-library/dom'
+import { getByText, getByRole, getAllByRole } from '@testing-library/dom'
 import '@testing-library/jest-dom/vitest'
 import { render } from 'lit-html'
 import { ProofTreeView } from './ProofTreeView'
@@ -24,6 +24,15 @@ test('show premise', () => {
     render(ProofTreeView(tree), document.body)
     
     expect(getByText(document.body, "premise")).toBeInTheDocument()
+})
+
+test('show inference line of premise', () => {
+    const premiseTree = { conclusion: "premise", premiseProofTrees: [] }
+    const tree = { conclusion: "conclusion", premiseProofTrees: [ premiseTree ] }
+    
+    render(ProofTreeView(tree), document.body)
+    
+    expect(getAllByRole(document.body, "separator")).toHaveLength(2)
 })
 
 test('show other premise', () => {

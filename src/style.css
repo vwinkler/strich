@@ -43,8 +43,13 @@ h1 {
 }
 
 .formula {
-    padding-left: 1em;
-    padding-right: 1em;
+    padding-left: .5em;
+    padding-right: .5em;
+}
+
+.tree_container {
+    padding-left: .5em;
+    padding-right: .5em;
 }
 
 @media (prefers-color-scheme: light) {
