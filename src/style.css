@@ -38,6 +38,15 @@ h1 {
     margin: 0;
 }
 
+.premise_trees {
+    display: flex;
+}
+
+.formula {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

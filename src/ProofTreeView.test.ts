@@ -25,3 +25,13 @@ test('show premise', () => {
     
     expect(getByText(document.body, "premise")).toBeInTheDocument()
 })
+
+test('show other premise', () => {
+    const leftPremiseTree = { conclusion: "pre", premiseProofTrees: [] }
+    const rightPremiseTree = { conclusion: "pre -> post", premiseProofTrees: [] }
+    const tree = { conclusion: "post", premiseProofTrees: [ leftPremiseTree, rightPremiseTree ] }
+    
+    render(ProofTreeView(tree), document.body)
+    
+    expect(getByText(document.body, "pre -> post")).toBeInTheDocument()
+})

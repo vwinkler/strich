@@ -6,12 +6,11 @@ export interface ProofTree {
 }
 
 export const ProofTreeView = (tree: ProofTree) => {
-    const premise = tree.premiseProofTrees.length ?
-        html`<div>${tree.premiseProofTrees[0].conclusion}</div>` :
-        ""
+    const premises = tree.premiseProofTrees.map(
+        (premiseTree) => html`<div class="formula">${premiseTree.conclusion}</div>`)
     return html`
-    ${premise}
+    <div class="premise_trees">${premises}</div>
     <hr class="inference_line">
-    ${tree.conclusion}
+    <div class="formula">${tree.conclusion}</div>
     `
 }

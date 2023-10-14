@@ -1,5 +1,5 @@
 import { html, render } from 'lit-html'
-import { ProofTreeView } from './ProofTreeView'
+import { ProofTree, ProofTreeView } from './ProofTreeView'
 import './style.css'
 
 const main = () => {
@@ -8,8 +8,9 @@ const main = () => {
         console.error("Could not find content element")
         return
     }
-    const premiseTree : ProofTree = { conclusion: "-p-q--", premiseProofTrees: [] }
-    const tree : ProofTree = { conclusion: "-p--q---", premiseProofTrees: [premiseTree]}
+    const leftPremiseTree : ProofTree = { conclusion: "a", premiseProofTrees: [] }
+    const rightPremiseTree : ProofTree = { conclusion: "a -> b", premiseProofTrees: [] }
+    const tree : ProofTree = { conclusion: "b", premiseProofTrees: [leftPremiseTree, rightPremiseTree]}
 
     render(html`
            ${ProofTreeView(tree)}
