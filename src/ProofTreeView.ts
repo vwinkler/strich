@@ -6,6 +6,6 @@ export interface ProofTree {
 }
 
 export const ProofTreeView = (tree: ProofTree) => html`
-    <hr>
+    <hr class="inference_line">
     ${tree.conclusion}
 `
