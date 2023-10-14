@@ -44,3 +44,13 @@ test('show other premise', () => {
     
     expect(getByText(document.body, "pre -> post")).toBeInTheDocument()
 })
+
+test('show premise of premise', () => {
+    const innerPremiseTree = { conclusion: "-p-q--", premiseProofTrees: [] }
+    const directPremiseTree = { conclusion: "-p--q---", premiseProofTrees: [ innerPremiseTree ] }
+    const tree = { conclusion: "-p---q----", premiseProofTrees: [ directPremiseTree ] }
+    
+    render(ProofTreeView(tree), document.body)
+    
+    expect(getByText(document.body, "-p-q--")).toBeInTheDocument()
+})
