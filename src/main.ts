@@ -8,9 +8,11 @@ const main = () => {
         console.error("Could not find content element")
         return
     }
+    const premiseTree : ProofTree = { conclusion: "-p-q--", premiseProofTrees: [] }
+    const tree : ProofTree = { conclusion: "-p--q---", premiseProofTrees: [premiseTree]}
 
     render(html`
-           ${ProofTreeView({ conclusion: "-p-q--", premiseProofTrees: []})}
+           ${ProofTreeView(tree)}
            `, contentElement)
 }
 
