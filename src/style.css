@@ -36,6 +36,8 @@ h1 {
 
 .inference_line {
     margin: 0;
+    flex: 1;
+    align-self: flex-end;
 }
 
 .premise_trees {
@@ -51,6 +53,12 @@ h1 {
 
 .tree_container {
     align-self: flex-end;
+}
+
+.rule_name {
+    font-size: .7em;
+    height: 0;
+    width: 0;
 }
 
 @media (prefers-color-scheme: light) {

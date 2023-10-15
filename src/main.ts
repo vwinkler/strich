@@ -11,10 +11,11 @@ const main = () => {
     const leftTopPremiseTree : ProofTree = { conclusion: "a", premiseProofTrees: [] }
     const rightTopPremiseTree : ProofTree = { conclusion: "a -> b", premiseProofTrees: [] }
     const topPremiseTrees = [leftTopPremiseTree, rightTopPremiseTree]
-    const leftPremiseTree : ProofTree = { conclusion: "b", premiseProofTrees: topPremiseTrees}
+    const leftPremiseTree : ProofTree = { conclusion: "b", premiseProofTrees: topPremiseTrees,
+        rule: "MP"}
     const rightPremiseTree : ProofTree = { conclusion: "b -> c", premiseProofTrees: [] }
     const premiseTrees = [leftPremiseTree, rightPremiseTree]
-    const tree : ProofTree = { conclusion: "c", premiseProofTrees: premiseTrees}
+    const tree : ProofTree = { conclusion: "c", premiseProofTrees: premiseTrees, rule: "MP"}
 
     render(html`
            ${ProofTreeView(tree)}

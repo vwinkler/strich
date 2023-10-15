@@ -54,3 +54,11 @@ test('show premise of premise', () => {
     
     expect(getByText(document.body, "-p-q--")).toBeInTheDocument()
 })
+
+test('show name of rule', () => {
+    const tree = { conclusion: "-p-q--", premiseProofTrees: [], rule: "Ax" }
+    
+    render(ProofTreeView(tree), document.body)
+    
+    expect(getByText(document.body, "Ax")).toBeInTheDocument()
+})
