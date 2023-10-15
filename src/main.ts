@@ -13,7 +13,8 @@ const main = () => {
     const topPremiseTrees = [leftTopPremiseTree, rightTopPremiseTree]
     const leftPremiseTree : ProofTree = { conclusion: "b", premiseProofTrees: topPremiseTrees,
         rule: "MP"}
-    const rightPremiseTree : ProofTree = { conclusion: "b -> c", premiseProofTrees: [] }
+    const rightPremiseTree : ProofTree = { conclusion: "b -> c", premiseProofTrees: [],
+        rule: "Ax.1" }
     const premiseTrees = [leftPremiseTree, rightPremiseTree]
     const tree : ProofTree = { conclusion: "c", premiseProofTrees: premiseTrees, rule: "MP"}
 

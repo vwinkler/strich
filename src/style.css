@@ -47,6 +47,7 @@ h1 {
 }
 
 .formula {
+    flex: 1;
     padding-left: .5em;
     padding-right: .5em;
 }
@@ -57,8 +58,12 @@ h1 {
 
 .rule_name {
     font-size: .7em;
-    height: 0;
-    width: 0;
+}
+
+.below_inference_line_container {
+    display: flex;
+    align-items: flex-start;
+    gap: .5em;
 }
 
 @media (prefers-color-scheme: light) {
