@@ -8,8 +8,9 @@ const main = () => {
         console.error("Could not find content element")
         return
     }
-    const leftTopPremiseTree : ProofTree = { conclusion: "a", premiseProofTrees: [] }
-    const rightTopPremiseTree : ProofTree = { conclusion: "a -> b", premiseProofTrees: [] }
+    const leftTopPremiseTree : ProofTree = { conclusion: "a", premiseProofTrees: [], rule: "" }
+    const rightTopPremiseTree : ProofTree = { conclusion: "a -> b", premiseProofTrees: [],
+        rule: "" }
     const topPremiseTrees = [leftTopPremiseTree, rightTopPremiseTree]
     const leftPremiseTree : ProofTree = { conclusion: "b", premiseProofTrees: topPremiseTrees,
         rule: "MP"}

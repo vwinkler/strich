@@ -3,7 +3,7 @@ import { html, TemplateResult } from 'lit-html'
 export interface ProofTree {
     conclusion: string
     premiseProofTrees: ProofTree[]
-    rule?: string
+    rule: string
 }
 
 export function ProofTreeView(tree: ProofTree) : TemplateResult {
