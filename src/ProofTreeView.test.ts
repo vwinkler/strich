@@ -1,8 +1,8 @@
 import { expect, test } from 'vitest'
 import { getByText, getByRole, getAllByRole } from '@testing-library/dom'
 import '@testing-library/jest-dom/vitest'
-import { render } from 'lit-html'
-import { ProofTreeView } from './ProofTreeView'
+import { render, html } from 'lit-html'
+import { ProofTreeView, defaultCustomViews } from './ProofTreeView'
 
 
 test('show conclusion', () => {
@@ -63,4 +63,40 @@ test('show name of rule', () => {
     render(ProofTreeView(tree), document.body)
     
     expect(getByText(document.body, "Ax")).toBeInTheDocument()
+})
+
+test('show custom FormulaView', () => {
+    const tree = { conclusion: "-p-q--", premiseProofTrees: [], rule: "Ax" }
+    const customViews = {
+        ...defaultCustomViews,
+        FormulaView: () => html`<div>Test FormulaView</div>`
+    }
+    
+    render(ProofTreeView(tree, customViews), document.body)
+    
+    expect(getByText(document.body, "Test FormulaView")).toBeInTheDocument()
+})
+
+test('show custom InferenceLineView', () => {
+    const tree = { conclusion: "-p-q--", premiseProofTrees: [], rule: "Ax" }
+    const customViews = {
+        ...defaultCustomViews,
+        InferenceLineView: () => html`<div>Test InferenceLineView</div>`
+    }
+    
+    render(ProofTreeView(tree, customViews), document.body)
+    
+    expect(getByText(document.body, "Test InferenceLineView")).toBeInTheDocument()
+})
+
+test('show custom RuleNameView', () => {
+    const tree = { conclusion: "-p-q--", premiseProofTrees: [], rule: "Ax" }    
+    const customViews = {
+        ...defaultCustomViews,
+        RuleNameView: () => html`<div>Test RuleNameView</div>`            
+    }
+    
+    render(ProofTreeView(tree, customViews), document.body)
+    
+    expect(getByText(document.body, "Test RuleNameView")).toBeInTheDocument()
 })

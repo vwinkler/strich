@@ -6,15 +6,28 @@ export interface ProofTree {
     rule: string
 }
 
-export function ProofTreeView(tree: ProofTree) : TemplateResult {
-    const premiseTreeViews = tree.premiseProofTrees.map(ProofTreeView)
+export interface CustomViews {
+    FormulaView: (tree : ProofTree) => TemplateResult,
+    InferenceLineView: (tree : ProofTree) => TemplateResult,
+    RuleNameView: (tree : ProofTree) => TemplateResult
+}
+
+export const defaultCustomViews : CustomViews = {
+    FormulaView: (tree) => html`${tree.conclusion}`,
+    InferenceLineView: (_tree) => html`<hr class="inference_line" style="margin: 0">`,
+    RuleNameView: (tree) => html`<div class="rule_name">${tree.rule}</div>`
+}
+
+export function ProofTreeView(tree: ProofTree,
+                              customViews : CustomViews = defaultCustomViews) : TemplateResult {
+    const premiseTreeViews = tree.premiseProofTrees.map((tree) => ProofTreeView(tree, customViews))
     return html`
     <div class="tree_container">
     <div class="premise_trees">${premiseTreeViews}</div>
-    <hr class="inference_line" style="margin: 0">
+    ${customViews.InferenceLineView(tree)}
     <div class="below_inference_line_container">
-    ${tree.rule ? html`<div class="rule_name">${tree.rule}</div>` : html``}
-    <div class="formula">${tree.conclusion}</div>
+    ${tree.rule ? html`<div class="rule_name">${customViews.RuleNameView(tree)}</div>` : html``}
+    <div class="formula">${customViews.FormulaView(tree)}</div>
     </div>
     </div>
     `
