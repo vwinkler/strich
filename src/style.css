@@ -34,10 +34,6 @@ h1 {
   text-align: center;
 }
 
-.inference_line {
-    margin: 0;
-}
-
 .premise_trees {
     display: flex;
     align-items: flex-start;
