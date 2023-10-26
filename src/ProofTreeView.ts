@@ -14,8 +14,8 @@ export interface CustomViews {
 
 export const defaultCustomViews : CustomViews = {
     FormulaView: (tree) => html`${tree.conclusion}`,
-    InferenceLineView: (_tree) => html`<hr class="inference_line" style="margin: 0">`,
-    RuleNameView: (tree) => html`<div class="rule_name">${tree.rule}</div>`
+    InferenceLineView: (_tree) => html`<hr style="margin: 0">`,
+    RuleNameView: (tree) => html`<div style="font-size: .7em">${tree.rule}</div>`
 }
 
 export function ProofTreeView(tree: ProofTree,

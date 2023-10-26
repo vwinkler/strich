@@ -50,10 +50,6 @@ h1 {
     align-self: flex-end;
 }
 
-.rule_name {
-    font-size: .7em;
-}
-
 .below_inference_line_container {
     display: flex;
     align-items: flex-start;
