@@ -1,25 +1,26 @@
 import { html, TemplateResult } from 'lit-html'
 
-export interface ProofTree {
-    conclusion: string
-    premiseProofTrees: ProofTree[]
+export interface ProofTree<Formula> {
+    conclusion: Formula
+    premiseProofTrees: ProofTree<Formula>[]
     rule: string
 }
 
-export interface CustomViews {
-    FormulaView: (tree : ProofTree) => TemplateResult,
-    InferenceLineView: (tree : ProofTree) => TemplateResult,
-    RuleNameView: (tree : ProofTree) => TemplateResult
+export interface CustomViews<Formula> {
+    FormulaView: (tree : ProofTree<Formula>) => TemplateResult,
+    InferenceLineView: (tree : ProofTree<Formula>) => TemplateResult,
+    RuleNameView: (tree : ProofTree<Formula>) => TemplateResult
 }
 
-export const defaultCustomViews : CustomViews = {
+export const defaultCustomViews : CustomViews<string> = {
     FormulaView: (tree) => html`${tree.conclusion}`,
     InferenceLineView: (_tree) => html`<hr style="margin: 0">`,
     RuleNameView: (tree) => html`<div style="font-size: .7em">${tree.rule}</div>`
 }
 
-export function ProofTreeView(tree: ProofTree,
-                              customViews : CustomViews = defaultCustomViews) : TemplateResult {
+export function ProofTreeView<Formula>(tree: ProofTree<Formula>,
+                                       customViews : CustomViews<Formula>)
+                                           : TemplateResult {
     const premiseTreeViews = tree.premiseProofTrees.map((tree) => ProofTreeView(tree, customViews))
     return html`
     <div class="tree_container">

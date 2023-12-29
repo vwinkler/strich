@@ -7,13 +7,13 @@ import { ProofTreeView, defaultCustomViews } from './ProofTreeView'
 
 test('show conclusion', () => {
     const tree = { conclusion: "-p-q--", premiseProofTrees: [], rule: "" }
-    render(ProofTreeView(tree), document.body)
+    render(ProofTreeView(tree, defaultCustomViews), document.body)
     expect(getByText(document.body, "-p-q--")).toBeInTheDocument()
 })
 
 test('show inference line', () => {
     const tree = { conclusion: "-p-q--", premiseProofTrees: [], rule: "" }
-    render(ProofTreeView(tree), document.body)
+    render(ProofTreeView(tree, defaultCustomViews), document.body)
     expect(getByRole(document.body, "separator")).toBeInTheDocument()
 })
 
@@ -21,7 +21,7 @@ test('show premise', () => {
     const premiseTree = { conclusion: "premise", premiseProofTrees: [], rule: "" }
     const tree = { conclusion: "conclusion", premiseProofTrees: [ premiseTree ], rule: "" }
     
-    render(ProofTreeView(tree), document.body)
+    render(ProofTreeView(tree, defaultCustomViews), document.body)
     
     expect(getByText(document.body, "premise")).toBeInTheDocument()
 })
@@ -30,7 +30,7 @@ test('show inference line of premise', () => {
     const premiseTree = { conclusion: "premise", premiseProofTrees: [], rule: "" }
     const tree = { conclusion: "conclusion", premiseProofTrees: [ premiseTree ], rule: "" }
     
-    render(ProofTreeView(tree), document.body)
+    render(ProofTreeView(tree, defaultCustomViews), document.body)
     
     expect(getAllByRole(document.body, "separator")).toHaveLength(2)
 })
@@ -41,7 +41,7 @@ test('show other premise', () => {
     const tree = { conclusion: "post", premiseProofTrees: [ leftPremiseTree, rightPremiseTree ],
         rule: "" }
     
-    render(ProofTreeView(tree), document.body)
+    render(ProofTreeView(tree, defaultCustomViews), document.body)
     
     expect(getByText(document.body, "pre -> post")).toBeInTheDocument()
 })
@@ -52,7 +52,7 @@ test('show premise of premise', () => {
         rule: "" }
     const tree = { conclusion: "-p---q----", premiseProofTrees: [ directPremiseTree ], rule: "" }
     
-    render(ProofTreeView(tree), document.body)
+    render(ProofTreeView(tree, defaultCustomViews), document.body)
     
     expect(getByText(document.body, "-p-q--")).toBeInTheDocument()
 })
@@ -60,7 +60,7 @@ test('show premise of premise', () => {
 test('show name of rule', () => {
     const tree = { conclusion: "-p-q--", premiseProofTrees: [], rule: "Ax" }
     
-    render(ProofTreeView(tree), document.body)
+    render(ProofTreeView(tree, defaultCustomViews), document.body)
     
     expect(getByText(document.body, "Ax")).toBeInTheDocument()
 })
